@@ -1,5 +1,5 @@
 #meetyou-ali-oss
-=======
+
 [![NPM version][npm-image]][npm-url]
 
 [npm-image]: https://img.shields.io/npm/v/ali-oss.svg?style=flat-square

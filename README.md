@@ -1,5 +1,15 @@
 #meetyou-ali-oss
 
+## 模块载入
+```
+npm i meetyou-ali-oss -D
+```
+
+## 全局载入
+```
+npm i meetyou-ali-oss -g
+```
+
 ## 配置文件
 ```
 // https://github.com/ali-sdk/ali-oss

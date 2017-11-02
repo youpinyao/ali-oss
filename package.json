@@ -1,13 +1,14 @@
 {
   "name": "meetyou-ali-oss",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "upload file to oss",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "node ./bin/index.js ./demo/config.json"
+    "test": "node demo/test.js",
+    "test:cli": "node index.js ./demo/config.json"
   },
   "bin": {
-    "meetyou-ali-oss": "./bin/index.js"
+    "meetyou-ali-oss": "index.js"
   },
   "repository": {
     "type": "git",

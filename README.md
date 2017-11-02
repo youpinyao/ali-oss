@@ -1,10 +1,10 @@
-#meetyou-ali-oss
+# meetyou-ali-oss
 
 [![NPM version][npm-image]][npm-url]
 
-[npm-image]: https://img.shields.io/npm/v/ali-oss.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/meetyou-ali-oss.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/meetyou-ali-oss
-=======
+
 
 ## 模块载入
 ```

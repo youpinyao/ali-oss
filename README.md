@@ -26,7 +26,7 @@ npm i meetyou-ali-oss -g
   "bucket": "", // 必填
   "region": "", // 选填
   "srcDir": "/Users/youpinyao/meetyou/ad-activity/public/assets", // 必填 要上传的文件所在路径
-  "prefix": "ad-activity.meiyou.com" // 上传文件在云上的目录
+  "prefix": "ad-activity.meiyou.com" // 必填 上传文件在云上的目录
 }
 ```
 
@@ -41,7 +41,7 @@ aliOss({
   "bucket": "", // 必填
   "region": "", // 选填
   "srcDir": "/Users/youpinyao/meetyou/ad-activity/public/assets", // 必填 要上传的文件所在路径
-  "prefix": "ad-activity.meiyou.com" // 上传文件在云上的目录
+  "prefix": "ad-activity.meiyou.com" // 必填 上传文件在云上的目录
 }).then(() => {
   // 上传成功
 });

@@ -1,0 +1,28 @@
+{
+  "name": "meetyou-ali-oss",
+  "version": "1.0.0",
+  "description": "upload file to oss",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js ./demo/config.json"
+  },
+  "bin": {
+    "meetyou-ali-oss": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youpinyao/meetyou-ali-oss.git"
+  },
+  "author": "youpinyao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/youpinyao/meetyou-ali-oss/issues"
+  },
+  "homepage": "https://github.com/youpinyao/meetyou-ali-oss#readme",
+  "dependencies": {
+    "ali-oss": "^4.11.0",
+    "chalk": "^2.3.0",
+    "co": "^4.6.0",
+    "progress": "^2.0.0"
+  }
+}

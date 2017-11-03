@@ -53,7 +53,10 @@ module.exports = function (config) {
         reject();
       }
 
-      resolve(files(config.srcDir));
+      resolve(files(config.srcDir, {
+        ignoreDir: config.ignoreDir,
+        ignoreSuffix: config.ignoreSuffix,
+      }));
     });
   }
 

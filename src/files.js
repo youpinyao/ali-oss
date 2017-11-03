@@ -1,8 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-function eachFiles(src) {
+function eachFiles(src, config) {
   const list = [];
+  let ignoreSuffix = config.ignoreSuffix || [];
+
+  if (typeof ignoreSuffix === 'string') {
+    ignoreSuffix = ignoreSuffix.split(',');
+  }
 
   _eachFiles(src);
 
@@ -13,11 +18,17 @@ function eachFiles(src) {
       const fstats = fs.statSync(path.join(src, filename));
 
       if (fstats.isFile()) {
-        if (filename.startsWith('.')) {
+        let skip = false;
+        ignoreSuffix.forEach(suffix => {
+          if (filename.endsWith(`.${suffix}`)) {
+            skip = true;
+          }
+        });
+        if (filename.startsWith('.') || skip) {
           return;
         }
         list.push(path.join(src, filename));
-      } else {
+      } else if (config.ignoreDir !== true) {
         _eachFiles(path.join(src, filename));
       }
     });

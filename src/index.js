@@ -64,6 +64,10 @@ module.exports = function (config) {
     const len = files.length;
     let count = 0;
 
+    console.log(chalk.green(`目录：${config.srcDir}`));
+    console.log(chalk.green(`文件数：${len}`));
+    console.log(chalk.yellow('------------------------'));
+
     return new Promise(function (resolve, reject) {
       if (len === 0) {
         resolve();

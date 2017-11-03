@@ -14,7 +14,7 @@ if (!configPath) {
   return;
 }
 
-const filePath = path.resolve(__dirname, configPath);
+const filePath = path.resolve(process.cwd(), configPath);
 const isExist = fs.existsSync(filePath);
 let config = null;
 

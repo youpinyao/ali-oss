@@ -31,6 +31,6 @@ try {
     console.log(chalk.green('上传完成'));
   });
 } catch (e) {
-  console.log(chalk.red('文件格式错误'));
+  console.log(chalk.red('失败'));
   tip();
 }

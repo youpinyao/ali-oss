@@ -6,6 +6,8 @@ const chalk = require('chalk');
 const files = require('./files');
 
 module.exports = function (config) {
+  convertPath(config);
+
   const store = oss(Object.assign({
 
   }, config));
@@ -84,5 +86,9 @@ module.exports = function (config) {
     });
   }
 
-
+  function convertPath(config) {
+    if (config.srcDir && path.resolve(config.srcDir) !== config.srcDir) {
+      config.srcDir = path.join(process.cwd(), config.srcDir);
+    }
+  }
 }

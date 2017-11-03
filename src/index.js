@@ -72,7 +72,7 @@ module.exports = function (config) {
 
       files.forEach(file => {
         co(function* () {
-          return yield store.put(`${config.prefix}${file.split(config.srcDir)[1]}`, fs.createReadStream(file));
+          return yield store.put(path.join(config.prefix, file.split(config.srcDir)[1]), fs.createReadStream(file));
         }).then(data => {
           console.log(chalk.green(file));
           console.log(chalk.green(data.url));

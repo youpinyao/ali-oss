@@ -32,5 +32,6 @@ try {
   });
 } catch (e) {
   console.log(chalk.red('失败'));
+  console.log(e);
   tip();
 }

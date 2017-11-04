@@ -98,8 +98,10 @@ module.exports = function (config) {
   }
 
   function convertPath(config) {
-    if (config.srcDir && path.resolve(config.srcDir) !== config.srcDir) {
+    if (config.srcDir && path.resolve(config.srcDir) !== config.srcDir && path.resolve(config.srcDir).replace(/\\/g, '/') !== config.srcDir) {
       config.srcDir = path.join(process.cwd(), config.srcDir);
+    } else {
+      config.srcDir = path.resolve(config.srcDir);
     }
   }
 }

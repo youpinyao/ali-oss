@@ -6,6 +6,7 @@ const chalk = require('chalk');
 const files = require('./files');
 
 module.exports = function (config) {
+  // 路径转换
   convertPath(config);
 
   const store = oss(Object.assign({
@@ -70,7 +71,10 @@ module.exports = function (config) {
 
     return new Promise(function (resolve, reject) {
       if (len === 0) {
-        resolve();
+        resolve({
+          len,
+          config,
+        });
         return;
       }
 
@@ -88,7 +92,10 @@ module.exports = function (config) {
           count++;
 
           if (count >= len) {
-            resolve();
+            resolve({
+              len,
+              config,
+            });
           }
         }, data => {
           reject(data);

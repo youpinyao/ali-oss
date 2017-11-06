@@ -1,11 +1,14 @@
 {
   "name": "meetyou-ali-oss",
-  "version": "0.0.16",
+  "version": "1.0.0",
   "description": "upload file to oss",
   "main": "src/index.js",
   "scripts": {
-    "test": "node demo/test.js",
-    "test:cli": "node index.js ./demo/config.json"
+    "upload": "node demo/test.js",
+    "upload:cli": "node index.js upload ./demo/config.json",
+    "version:cli": "node index.js version",
+    "help:cli": "node index.js help",
+    "access:cli": "node index.js access"
   },
   "bin": {
     "meetyou-ali-oss": "index.js"
@@ -23,7 +26,13 @@
   "dependencies": {
     "ali-oss": "^4.11.0",
     "chalk": "^2.3.0",
+    "cli-spinners": "^1.1.0",
     "co": "^4.6.0",
+    "exec-series": "^1.0.3",
+    "ora": "^1.3.0",
     "progress": "^2.0.0"
+  },
+  "devDependencies": {
+    "input": "^1.0.1"
   }
 }

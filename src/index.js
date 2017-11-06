@@ -9,9 +9,20 @@ module.exports = function (config) {
   // 路径转换
   convertPath(config);
 
-  const store = oss(Object.assign({
+  let defaultConfig = {
+    accessKeyId: '',
+    accessKeySecret: '',
+    bucket: '',
+    region: '',
+  };
 
-  }, config));
+  if (fs.existsSync('.access')) {
+    const access = JSON.parse(fs.readFileSync('.access', 'utf-8'));
+
+    defaultConfig = Object.assign(defaultConfig, access);
+  }
+
+  const store = oss(Object.assign(defaultConfig, config));
 
   return checkBucket().then(() => {
     return eachFiles();

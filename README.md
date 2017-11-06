@@ -16,15 +16,25 @@ npm i meetyou-ali-oss -D
 npm i meetyou-ali-oss -g
 ```
 
+## 配置access
+
+```
+// 初次使用需配置
+
+meetyou-ali-oss access
+
+输入 accessKeyId accessKeySecret bucket region
+```
+
 ## 配置文件
 ```
 // https://github.com/ali-sdk/ali-oss
 // config.json
 {
-  "accessKeyId": "",// 必填
-  "accessKeySecret": "",// 必填
-  "bucket": "", // 必填
-  "region": "", // 选填
+  "accessKeyId": "",// 必填 当设置access后可不填
+  "accessKeySecret": "",// 必填 当设置access后可不填
+  "bucket": "", // 必填 当设置access后可不填
+  "region": "", // 选填 当设置access后可不填
   "srcDir": "./public/assets", // 必填 要上传的文件所在路径
   "ignoreDir": true, // 是否忽略文件夹
   "ignoreSuffix": "html,css", // 忽略后缀逗号隔开，或者数组
@@ -52,5 +62,5 @@ aliOss({
 ## cli
 
 ```
-meetyou-ali-oss ./config.json
+meetyou-ali-oss upload ./config.json
 ```

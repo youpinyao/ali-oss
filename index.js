@@ -5,7 +5,7 @@ const type = args[0];
 
 const upload = require('./cli/upload');
 const version = require('./cli/version');
-const help = require('./src/help');
+const help = require('./cli/help');
 const upgrade = require('./cli/upgrade');
 const access = require('./cli/access');
 

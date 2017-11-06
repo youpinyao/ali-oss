@@ -2,6 +2,7 @@ const chalk = require('chalk');
 const input = require('input');
 const path = require('path');
 const fs = require('fs');
+const aliossaccess = require('../src/aliossaccess');
 
 module.exports = function () {
   let accessKeyId = '';
@@ -20,7 +21,7 @@ module.exports = function () {
     return getRegion();
   }).then(d => {
     region = d.trim();
-    fs.writeFileSync('.access', `{
+    fs.writeFileSync(aliossaccess, `{
       "accessKeyId": "${accessKeyId}",
       "accessKeySecret": "${accessKeySecret}",
       "bucket": "${bucket}",
@@ -33,7 +34,7 @@ module.exports = function () {
 
 function getAccessKeyId() {
   return new Promise((resolve, reject) => {
-    input.text('请输入 accessKeyId：').then(d => {
+    input.text('accessKeyId：').then(d => {
       if (!d) {
         getAccessKeyId().then(dd => {
           resolve(dd);
@@ -47,7 +48,7 @@ function getAccessKeyId() {
 
 function getAccessKeySecret() {
   return new Promise((resolve, reject) => {
-    input.text('请输入 accessKeySecret').then(d => {
+    input.text('accessKeySecret').then(d => {
       if (!d) {
         getAccessKeySecret().then(dd => {
           resolve(dd);
@@ -61,7 +62,7 @@ function getAccessKeySecret() {
 
 function getBucket() {
   return new Promise((resolve, reject) => {
-    input.text('请输入 bucket').then(d => {
+    input.text('bucket').then(d => {
       if (!d) {
         getBucket().then(dd => {
           resolve(dd);
@@ -75,7 +76,7 @@ function getBucket() {
 
 function getRegion() {
   return new Promise((resolve, reject) => {
-    input.text('请输入 region').then(d => {
+    input.text('region').then(d => {
       if (!d) {
         getRegion().then(dd => {
           resolve(dd);

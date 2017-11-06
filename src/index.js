@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const files = require('./files');
+const aliossaccess = require('./aliossaccess');
 
 module.exports = function (config) {
   // 路径转换
@@ -16,8 +17,8 @@ module.exports = function (config) {
     region: '',
   };
 
-  if (fs.existsSync('.access')) {
-    const access = JSON.parse(fs.readFileSync('.access', 'utf-8'));
+  if (fs.existsSync(aliossaccess)) {
+    const access = JSON.parse(fs.readFileSync(aliossaccess, 'utf-8'));
 
     defaultConfig = Object.assign(defaultConfig, access);
   }

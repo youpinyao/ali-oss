@@ -1,6 +1,6 @@
 {
   "name": "meetyou-ali-oss",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "upload file to oss",
   "main": "src/index.js",
   "scripts": {

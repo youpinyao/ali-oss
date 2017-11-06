@@ -25,35 +25,33 @@ module.exports = function (config) {
 
   const store = oss(Object.assign(defaultConfig, config));
 
-  return checkBucket().then(() => {
-    return eachFiles();
-  }).then(files => {
+  eachFiles().then(files => {
     return doUpload(files);
   });
 
-  // 检测bucket 是否存在
-  function checkBucket() {
-    return new Promise(function (resolve, reject) {
-      co(function* () {
-        return yield store.listBuckets({
-          "max-keys": 2,
-          prefix: config.bucket,
-        });
-      }).then(data => {
-        if (!data.buckets) {
-          console.log(chalk.red('bucket 不存在'));
-          reject();
-          return;
-        }
-        if (data.buckets.length > 1) {
-          console.log(chalk.red('bucket 不唯一'));
-          reject();
-          return;
-        }
-        resolve();
-      });
-    });
-  }
+  // 检测bucket 是否存在 - 废除
+  // function checkBucket() {
+  //   return new Promise(function (resolve, reject) {
+  //     co(function* () {
+  //       return yield store.listBuckets({
+  //         "max-keys": 2,
+  //         prefix: config.bucket,
+  //       });
+  //     }).then(data => {
+  //       if (!data.buckets) {
+  //         console.log(chalk.red('bucket 不存在'));
+  //         reject();
+  //         return;
+  //       }
+  //       if (data.buckets.length > 1) {
+  //         console.log(chalk.red('bucket 不唯一'));
+  //         reject();
+  //         return;
+  //       }
+  //       resolve();
+  //     });
+  //   });
+  // }
 
   function eachFiles() {
     return new Promise(function (resolve, reject) {

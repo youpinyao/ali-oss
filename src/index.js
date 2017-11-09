@@ -103,7 +103,7 @@ module.exports = function (config) {
             prefix: ossPath,
           });
         }).then(data => {
-          if (config.deduplication !== true || (config.deduplication === true && data.objects && data.objects.length < 1)) {
+          if (config.deduplication !== true || (config.deduplication === true && data.objects === undefined)) {
             co(function* () {
               return yield store.put(ossPath, fs.createReadStream(file));
             }).then(data => {

@@ -25,7 +25,7 @@ module.exports = function (config) {
 
   const store = oss(Object.assign(defaultConfig, config));
 
-  eachFiles().then(files => {
+  return eachFiles().then(files => {
     return doUpload(files);
   });
 
@@ -88,29 +88,52 @@ module.exports = function (config) {
         return;
       }
 
-      files.forEach(file => {
+      next();
+
+      function next() {
+        const file = files[count];
+        let filename = file.split(config.srcDir)[1];
+        filename = filename.replace(/\\/g, '/');
+        const ossPath = `${config.prefix}${filename}`;
+
+        console.log(chalk.green(file));
+
         co(function* () {
-
-          let filename = file.split(config.srcDir)[1];
-          filename = filename.replace(/\\/g, '/');
-
-          return yield store.put(`${config.prefix}${filename}`, fs.createReadStream(file));
+          return yield store.list({
+            prefix: ossPath,
+          });
         }).then(data => {
-          console.log(chalk.green(file));
-          console.log(chalk.green(data.url));
-          console.log(chalk.yellow('------------------------'));
-          count++;
-
-          if (count >= len) {
-            resolve({
-              len,
-              config,
+          if (config.deduplication !== true || (config.deduplication === true && data.objects && data.objects.length < 1)) {
+            co(function* () {
+              return yield store.put(ossPath, fs.createReadStream(file));
+            }).then(data => {
+              nextCallback(data);
+            }, data => {
+              reject(data);
             });
+          } else {
+            console.log(chalk.yellow('文件重复不上传'));
+            nextCallback();
           }
-        }, data => {
-          reject(data);
         });
-      });
+
+
+      }
+
+      function nextCallback(data) {
+        data && data.url && console.log(chalk.green(data.url));
+        console.log(chalk.yellow('------------------------'));
+        count++;
+
+        if (count >= len) {
+          resolve({
+            len,
+            config,
+          });
+          return;
+        }
+        next();
+      }
     });
   }
 

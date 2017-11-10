@@ -116,8 +116,6 @@ module.exports = function (config) {
             nextCallback();
           }
         });
-
-
       }
 
       function nextCallback(data) {

@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
 const commander = require('commander');
-const args = process.argv.slice(2);
-const type = args[0];
 
 const upload = require('./cli/upload');
 const help = require('./cli/help');

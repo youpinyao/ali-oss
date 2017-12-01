@@ -11,10 +11,10 @@ const access = require('./cli/access');
 
 commander
   .version(require('./package.json').version)
-  .option('-u,--upload,upload <path>', 'upload to aliyun oss', function (path) {
+  .option('--upload,upload <path>', 'upload to aliyun oss', function (path) {
     upload(path);
   })
-  .option('-a,--access,access', 'init access file', function (path) {
+  .option('--access,access', 'init access file', function (path) {
     access();
   })
   .option('--upgrade,upgrade', 'upgrade', function (path) {

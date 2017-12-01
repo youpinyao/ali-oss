@@ -2,11 +2,6 @@ const chalk = require('chalk');
 
 function help() {
   console.log(chalk.green(`
-upload <configFilePath>   上传资源
-upgrade                   升级
-help                      提示
-version                   版本
-
 // https://github.com/ali-sdk/ali-oss
 // config.json
 {

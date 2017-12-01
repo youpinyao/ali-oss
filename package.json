@@ -6,8 +6,8 @@
   "scripts": {
     "upload": "node demo/test.js",
     "upload:cli": "node index.js upload ./demo/config.json",
-    "version:cli": "node index.js version",
-    "help:cli": "node index.js help",
+    "version:cli": "node index.js --version",
+    "help:cli": "node index.js -help",
     "access:cli": "node index.js access"
   },
   "bin": {
@@ -28,11 +28,11 @@
     "chalk": "^2.3.0",
     "cli-spinners": "^1.1.0",
     "co": "^4.6.0",
+    "commander": "^2.12.2",
     "exec-series": "^1.0.3",
+    "input": "^1.0.1",
     "ora": "^1.3.0",
-    "progress": "^2.0.0",
-    "input": "^1.0.1"
+    "progress": "^2.0.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

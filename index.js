@@ -1,31 +1,28 @@
 #!/usr/bin/env node
 
+const commander = require('commander');
 const args = process.argv.slice(2);
 const type = args[0];
 
 const upload = require('./cli/upload');
-const version = require('./cli/version');
 const help = require('./cli/help');
 const upgrade = require('./cli/upgrade');
 const access = require('./cli/access');
 
-switch (type) {
-  case 'upload':
-    upload(args[1]);
-    break;
-  case 'access':
+commander
+  .version(require('./package.json').version)
+  .option('-u,--upload,upload <path>', 'upload to aliyun oss', function (path) {
+    upload(path);
+  })
+  .option('-a,--access,access', 'init access file', function (path) {
     access();
-    break;
-  case 'upgrade':
+  })
+  .option('--upgrade,upgrade', 'upgrade', function (path) {
     upgrade();
-    break;
-  case 'version':
-    version.print();
-    break;
-  case 'help':
-    help();
-    break;
-  default:
-    help();
-    break;
-}
+  })
+
+commander.on('--help', function () {
+  help();
+});
+
+commander.parse(process.argv);

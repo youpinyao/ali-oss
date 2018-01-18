@@ -59,7 +59,7 @@ module.exports = function (config) {
         console.log(chalk.red('srcDir 不存在'));
         reject();
       }
-      if (!config.srcDir) {
+      if (!config.prefix) {
         console.log(chalk.red('prefix 不存在'));
         reject();
       }

@@ -4,85 +4,43 @@ const path = require('path');
 const fs = require('fs');
 const aliossaccess = require('../src/aliossaccess');
 
-module.exports = function () {
-  let accessKeyId = '';
-  let accessKeySecret = '';
-  let bucket = '';
-  let region = '';
+const inputOption = {
+  validate: function (answer) {
+    if (!answer) {
+      return '必填';
+    }
+    return true;
+  }
+}
 
-  getAccessKeyId().then(d => {
-    accessKeyId = d.trim();
-    return getAccessKeySecret();
+module.exports = function () {
+  const json = {
+    accessKeyId: '',
+    accessKeySecret: '',
+    bucket: '',
+    region: '',
+  }
+
+  getText('accessKeyId').then(d => {
+    json.accessKeyId = d.trim();
+    return getText('accessKeySecret');
   }).then(d => {
-    accessKeySecret = d.trim();
-    return getBucket();
+    json.accessKeySecret = d.trim();
+    return getText('bucket');
   }).then(d => {
-    bucket = d.trim();
-    return getRegion();
+    json.bucket = d.trim();
+    return getText('region');
   }).then(d => {
-    region = d.trim();
-    fs.writeFileSync(aliossaccess, `{
-      "accessKeyId": "${accessKeyId}",
-      "accessKeySecret": "${accessKeySecret}",
-      "bucket": "${bucket}",
-      "region": "${region}"
-    }`, {
+    json.region = d.trim();
+    fs.writeFileSync(aliossaccess, JSON.stringify(json), {
       encoding: 'utf-8'
     });
   });
 }
 
-function getAccessKeyId() {
+function getText(type) {
   return new Promise((resolve, reject) => {
-    input.text('accessKeyId：').then(d => {
-      if (!d) {
-        getAccessKeyId().then(dd => {
-          resolve(dd);
-        });
-        return;
-      }
-      resolve(d);
-    });
-  });
-}
-
-function getAccessKeySecret() {
-  return new Promise((resolve, reject) => {
-    input.text('accessKeySecret').then(d => {
-      if (!d) {
-        getAccessKeySecret().then(dd => {
-          resolve(dd);
-        });
-        return;
-      }
-      resolve(d);
-    });
-  });
-}
-
-function getBucket() {
-  return new Promise((resolve, reject) => {
-    input.text('bucket').then(d => {
-      if (!d) {
-        getBucket().then(dd => {
-          resolve(dd);
-        });
-        return;
-      }
-      resolve(d);
-    });
-  });
-}
-
-function getRegion() {
-  return new Promise((resolve, reject) => {
-    input.text('region').then(d => {
-      if (!d) {
-        getRegion().then(dd => {
-          resolve(dd);
-        });
-        return;
-      }
+    input.text(`${type}：`, inputOption).then(d => {
       resolve(d);
     });
   });

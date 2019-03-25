@@ -49,6 +49,7 @@ module.exports = function (config) {
 
   function doUpload(files) {
     const len = files.length;
+    const uploadedFiles = [];
     let count = 0;
 
     console.log(chalk.green(`目录：${config.srcDir}`));
@@ -60,6 +61,7 @@ module.exports = function (config) {
         resolve({
           len,
           config,
+          files: uploadedFiles,
         });
         return;
       }
@@ -89,13 +91,17 @@ module.exports = function (config) {
             });
           } else {
             console.log(chalk.yellow('文件重复不上传'));
-            nextCallback();
+            nextCallback(data.objects[0]);
           }
         });
       }
 
       function nextCallback(data) {
         data && data.url && console.log(chalk.green(data.url));
+
+        uploadedFiles.push(Object.assign(data, {
+          file: files[count],
+        }));
         console.log(chalk.yellow('------------------------'));
         count++;
 
@@ -103,6 +109,7 @@ module.exports = function (config) {
           resolve({
             len,
             config,
+            files: uploadedFiles,
           });
           return;
         }

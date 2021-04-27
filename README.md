@@ -21,7 +21,7 @@ npm i meetyou-ali-oss -g
 ```
 // 初次使用需配置
 
-meetyou-ali-oss access
+meetyou-ali-oss init
 
 输入 accessKeyId accessKeySecret bucket region
 ```

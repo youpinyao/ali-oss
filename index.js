@@ -5,15 +5,15 @@ const commander = require('commander');
 const upload = require('./cli/upload');
 const help = require('./cli/help');
 const upgrade = require('./cli/upgrade');
-const access = require('./cli/access');
+const init = require('./cli/init');
 
 commander
   .version(require('./package.json').version)
   .option('--upload, upload <path>', 'upload to aliyun oss', function (path) {
     upload(path);
   })
-  .option('--access, access', 'init access file', function (path) {
-    access();
+  .option('--init, init', 'init access file', function (path) {
+    init();
   })
   .option('--upgrade, upgrade', 'upgrade', function (path) {
     upgrade();
